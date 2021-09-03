@@ -1,0 +1,23 @@
+input:
+  -   name: sensor_locations
+      type: request_get
+      url: "https://data.melbourne.vic.gov.au/api/views/h57g-5234/rows.csv"
+      bucket: <enter-data-bucket>
+      upload_key: "staging/city_of_mel/pedestrian_counting_system_sensor_locations.csv"
+
+  -   name: monthly_counts_per_hour
+      type: request_get
+      url: "https://data.melbourne.vic.gov.au/api/views/b2ak-trbp/rows.csv"
+      bucket: <enter-data-bucket>
+      upload_key: "staging/city_of_mel/pedestrian_counting_system_monthly_counts_per_hour.csv"
+
+output:
+  -   name: sensor_locations
+      type: spark_table
+      table_name: "pedestrian_counting_system.sensor_locations"
+      table_path: "s3://<enter-data-bucket>/transformed/pedestrian_counting_system_sensor_locations.parquet"
+
+  -   name: monthly_counts_per_hour
+      type: spark_table
+      table_name: "pedestrian_counting_system.monthly_counts_per_hour"
+      table_path: "s3://<enter-data-bucket>/transformed/pedestrian_counting_system_monthly_counts_per_hour.parquet"

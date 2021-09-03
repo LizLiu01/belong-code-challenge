@@ -1,0 +1,1 @@
+select location, to_date(dt, 'dd/MM/yyyy hh:mm:ss a') as dt, cast(hourly_counts as int) hourly_counts from monthly_counts_per_hour_and_locations

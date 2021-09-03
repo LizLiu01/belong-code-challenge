@@ -1,0 +1,1 @@
+select location,dt,sum(hourly_counts) as hourly_counts_sum from monthly_counts_per_hour_and_locations_typed group by location, dt

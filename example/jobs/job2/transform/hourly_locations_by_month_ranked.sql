@@ -1,0 +1,1 @@
+select location, year(dt) as year, month(dt) as month, dense_rank() over (partition by year(dt),month(dt) order by hourly_counts_sum desc) as rank, hourly_counts_sum from hourly_counts_by_location_date

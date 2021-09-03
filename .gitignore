@@ -1,0 +1,11 @@
+.DS_Store
+.idea/
+dist/
+Beyond_ETL.egg-info/
+build/
+__pycache__
+spark-warehouse/
+terraform.tfstate
+terraform.tfstate*
+*.iml
+.terraform

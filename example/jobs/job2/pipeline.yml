@@ -1,0 +1,60 @@
+input:
+  -   name: monthly_counts_per_hour
+      type: spark_hive
+      sql: "SELECT date_time as dt, hourly_counts, sensor_id FROM pedestrian_counting_system.monthly_counts_per_hour"
+  -   name: sensor_locations
+      type: spark_hive
+      sql: "SELECT sensor_id, location FROM pedestrian_counting_system.sensor_locations"
+
+transform:
+  -   name: monthly_counts_per_hour_and_locations
+      type: s3_file
+      url: "s3://<enter-data-bucket>/example/jobs/job2/transform/monthly_counts_per_hour_and_locations.sql"
+  -   name: monthly_counts_per_hour_and_locations_typed
+      type: s3_file
+      url: "s3://<enter-data-bucket>/example/jobs/job2/transform/monthly_counts_per_hour_and_locations_typed.sql"
+  -   name: hourly_counts_by_location_date
+      type: s3_file
+      url: "s3://<enter-data-bucket>/example/jobs/job2/transform/hourly_locations_by_date.sql"
+  -   name: hourly_counts_by_location_date_ranked
+      type: s3_file
+      url: "s3://<enter-data-bucket>/example/jobs/job2/transform/hourly_locations_by_date_ranked.sql"
+  -   name: hourly_counts_by_location_date_ranked_filtered
+      type: s3_file
+      url: "s3://<enter-data-bucket>/example/jobs/job2/transform/hourly_locations_by_date_ranked_filtered.sql"
+  -   name: hourly_counts_by_location_month_ranked
+      type: s3_file
+      url: "s3://<enter-data-bucket>/example/jobs/job2/transform/hourly_locations_by_month_ranked.sql"
+  -   name: hourly_counts_by_location_month_ranked_filtered
+      type: s3_file
+      url: "s3://<enter-data-bucket>/example/jobs/job2/transform/hourly_locations_by_month_ranked_filtered.sql"
+
+output:
+  -   name: monthly_counts_per_hour_and_locations
+      type: spark_table
+      table_name: "pedestrian_counting_system.monthly_counts_per_hour_and_locations"
+      table_path: "s3://<enter-data-bucket>/transformed/monthly_counts_per_hour_and_locations.parquet"
+  -   name: monthly_counts_per_hour_and_locations_typed
+      type: spark_table
+      table_name: "pedestrian_counting_system.monthly_counts_per_hour_and_locations_typed"
+      table_path: "s3://<enter-data-bucket>/transformed/monthly_counts_per_hour_and_locations_typed.parquet"
+  -   name: hourly_counts_by_location_date
+      type: spark_table
+      table_name: "pedestrian_counting_system.hourly_counts_by_location_date"
+      table_path: "s3://<enter-data-bucket>/transformed/hourly_counts_by_location_date.parquet"
+  -   name: hourly_counts_by_location_date_ranked
+      type: spark_table
+      table_name: "pedestrian_counting_system.hourly_counts_by_location_date_ranked"
+      table_path: "s3://<enter-data-bucket>/hourly_counts_by_location_date_ranked.parquet"
+  -   name: hourly_counts_by_location_date_ranked_filtered
+      type: spark_table
+      table_name: "pedestrian_counting_system.hourly_counts_by_location_date_ranked_filtered"
+      table_path: "s3://<enter-data-bucket>/transformed/hourly_counts_by_location_date_ranked_filtered.parquet"
+  -   name: hourly_counts_by_location_month_ranked
+      type: spark_table
+      table_name: "pedestrian_counting_system.hourly_counts_by_location_month_ranked"
+      table_path: "s3://<enter-data-bucket>/hourly_counts_by_location_month_ranked.parquet"
+  -   name: hourly_counts_by_location_month_ranked_filtered
+      type: spark_table
+      table_name: "pedestrian_counting_system.hourly_counts_by_location_month_ranked_filtered"
+      table_path: "s3://<enter-data-bucket>/transformed/hourly_counts_by_location_month_ranked_filtered.parquet"
