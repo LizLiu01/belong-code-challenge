@@ -27,7 +27,7 @@ The module is under **terraform/modules/infra**
 The implementation of the modules is under **terraform/datagen/dev/infra**
 if you also want to deploy the infra to another environment, for example for prod, you can have another implementation called **terraform/datagen/prod/infra**
 
-deployment steps
+Deployment steps
 1.Go to terminal navigate to the following path
 ```shell
 cd terraform/datagen/dev/infra
@@ -47,10 +47,11 @@ more details check [here](https://www.terraform.io/docs/language/settings/backen
 ### Glue jobs
 ![Screenshot](belong-code-challenge-glue-job.png)
 There are two glue jobs, one is "dev_belong_code_challenge_upload_to_s3" which sends a request to an API and then uploads the file to s3.
-another one is "dev_belong_code_challenge_stats" which transforms the data and help to answer the stat questions.
+Another one is "dev_belong_code_challenge_stats" which transforms the data and helps to answer the stat questions.
 
 ### Athena
 ![Screenshot](belong-code-challenge-athena.png)
+
 A pedestrian_counting_system database will be created. There will be 9 tables in total under this database
 
 The raw data stores under the table below, which is the output from the glue job dev_belong_code_challenge_upload_to_s3
