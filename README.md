@@ -6,7 +6,7 @@
 This is a minimalistic framework that uses yml/sql to drive simple data pipelines 
 
 ### Deployment
-####prerequisites
+#### prerequisites
 create two s3 buckets on AWS named the bucket name as the following:
 1.belong-code-challenge-ll-config (store project artifacts)
 2.belong-code-challenge-ll-data (store transformed data here)
